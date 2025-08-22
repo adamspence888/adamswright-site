@@ -1,0 +1,39 @@
+---
+import Layout from '../components/Layout.astro';
+
+// Load all MDX sections at build-time
+const modules = import.meta.glob('../content/sections/*.mdx', { eager: true });
+
+// Sort by filename (01-, 02-, …) so you can reorder easily
+const sections = Object.entries(modules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, mod]) => mod);
+---
+
+<Layout title="Adam Wright — GTM Leader">
+  <header class="header">
+    <img class="avatar" src="/images/avatar.jpg" alt="Adam Wright" />
+    <div>
+      <h1>Adam Wright</h1>
+      <div class="small">Go-To-Market (GTM) Leader — APJ & EMEA</div>
+      <div class="contact small">
+        <a href="mailto:adam@plusgai.com">adam@plusgai.com</a>
+        <span>•</span>
+        <a href="tel:+6590300029">+65 9030 0029</a>
+      </div>
+    </div>
+  </header>
+
+  {sections.map((SectionMod) => {
+    const Content = SectionMod.default;
+    const fm = SectionMod.frontmatter ?? {};
+    return (
+      <section>
+        {fm.title && <h2>{fm.title}</h2>}
+        <article class="card">
+          <Content />
+        </article>
+      </section>
+    );
+  })}
+</Layout>

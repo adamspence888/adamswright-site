@@ -1,0 +1,24 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+site_url: "/"
+logo_url: "/images/avatar.jpg"
+
+collections:
+  - name: "sections"
+    label: "Page Sections"
+    label_singular: "Section"
+    folder: "src/content/sections"
+    create: true
+    slug: "{{slug}}"
+    extension: "mdx"
+    format: "frontmatter"
+    summary: "{{title}}"
+    sortable_fields: ["title", "commit_date", "filename"]
+    fields:
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Body", name: "body", widget: "markdown", required: true}

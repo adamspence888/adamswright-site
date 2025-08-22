@@ -1,0 +1,27 @@
+---
+title: default
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    
+<header class="container" style="display:flex; justify-content:space-between; align-items:center; padding-top:1rem;">
+  <a href="/" style="font-weight:600; letter-spacing:.2px;">Adam Wright</a>
+  <nav style="display:flex; gap:1rem;">
+    <a href="/contact">Contact</a>
+    <a href="/cv.pdf" download>Download CV</a>
+  </nav>
+</header>
+<main class="container">
+      <slot />
+    </main>
+    <footer class="footer">
+      <p>© {new Date().getFullYear()} Adam Wright</p>
+    </footer>
+  </body>
+</html>
